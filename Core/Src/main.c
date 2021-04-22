@@ -154,8 +154,11 @@ int main(void)
 	    	currentState = IDLE;
 	        break;
 	    }
+
 	    /*Start a -...*/
-	    /*canvi*/
+
+		/*Start a TIMER*/
+
 	    return 0;
 
 
