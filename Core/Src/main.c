@@ -154,7 +154,7 @@ int main(void)
 	    	currentState = IDLE;
 	        break;
 	    }
-	    /*Start a TIMER*/
+	    /*Start a -...*/
 	    return 0;
 
 
