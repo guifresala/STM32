@@ -8,9 +8,9 @@
 #ifndef INC_COMMS_H_
 #define INC_COMMS_H_
 
-/*Header with id (telecomand), or with the nº of piece of the photo, bit de paritat al final (nº 1's parell o senar
+/*Header with id (telecomand), or with the nº of piece of the photo, parity bit at the end (nº 1's odd or even)
  *
- * telecomands with #define whattodo nº
+ * telecomands with (#define name nº)
  */
 
 /*Telecommand received from comms
