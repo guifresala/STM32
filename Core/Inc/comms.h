@@ -30,6 +30,4 @@ void unpacking();
 #endif /* INC_COMMS_H_ */
 
 
-/*From GS the TLE is sended to the PQ, we update it inside the memory, the SPG4 uses it to propagate the orbit
- *
- */
+/*From GS the TLE is sended to the PQ, we update it inside the memory, the SPG4 uses it to propagate the orbit*/
