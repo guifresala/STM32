@@ -8,7 +8,10 @@
 #ifndef INC_COMMS_H_
 #define INC_COMMS_H_
 
-
+/*Header with id (telecomand), or with the nº of piece of the photo, bit de paritat al final (nº 1's parell o senar
+ *
+ * telecomands with #define whattodo nº
+ */
 
 /*Telecommand received from comms
 /*unpacking() -> redirect to the function we need to execute*/

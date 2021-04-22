@@ -60,9 +60,10 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 public enum MachineState {IDLE, COMMS, PAYLOAD, CONTINGENCY};
 MachineState currentState = IDLE;
+
 bool payload = false;
 bool comms = false;
-bool enoughPower = true;
+
 
 /* USER CODE END EFP */
 
