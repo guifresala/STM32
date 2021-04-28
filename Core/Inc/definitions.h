@@ -8,9 +8,13 @@
 #ifndef INC_DEFINITIONS_H_
 #define INC_DEFINITIONS_H_
 
-
+/*Temperature range operation of STM32L162VE*/
 #define TEMP_MIN = -40;
-#define TEMP_MAX = 125;
+#define TEMP_MAX = 105;
+
+constexpr int DELAY_CAMERA = 2500; /*Initial operation process*/
+
+
 /*Total of 8bytes -> 8bytes·1uit64_t/8bytes = 1 uit64_t*/
 typedef union __attribute__ ((__packed__)) Temperatures {
     uint64_t raw[1];

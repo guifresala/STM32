@@ -17,6 +17,13 @@
  * Start a timer (enough to have the payload prepared) and start working*/
 void payloadinit(void);
 
+
+/*（1）capture a image command
+*（2）read image data length command
+*（3）read image data command
+*（4）stop capture command*/
+bool takePhoto(void);
+
 /*Includes payloadinit()
  * Receive the compressed photo or spectre and store it into the memory
  * Then return to 'IDLE' state */

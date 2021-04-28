@@ -29,11 +29,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
-#include "configuration.h"
-#include "payload.h"
-#include "comms.h"
-#include "definitions.h"
-#include "sensorReadings.h"
+#include "main.c"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -59,11 +55,17 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-public enum MachineState {IDLE, COMMS, PAYLOAD, CONTINGENCY};
+enum MachineState {IDLE, COMMS, PAYLOAD, CONTINGENCY};
 MachineState currentState = IDLE;
+
+/*NOMINAL from 100 to 75, LOW from 75 to 15, CRITICAL from 15 to 10 (only to give us an idea*/
+enum BatteryLevel {NOMINAL=100, LOW=75, CRITICAL=15, SURVIVAL=10};
+BatteryLevel batterylevel;
 
 bool payload = false;
 bool comms = false;
+bool deployment_state = false; /*INICIALITZO AQUI??*/
+
 
 
 /* USER CODE END EFP */

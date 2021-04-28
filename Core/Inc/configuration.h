@@ -10,14 +10,9 @@
 
 #include "main.h"
 
-bool deployment_state = false; /*INICIALITZO AQUI??*/
-
-/*NOMINAL from 100 to 75, LOW from 75 to 15, CRITICAL from 15 to 10 (only to give us an idea*/
-enum BatteryLevel {NOMINAL=100, LOW=75, CRITICAL=15, SURVIVAL=10};
-BatteryLevel batterylevel;
-
 /*Only at the beginning, includes the Antenna deployment, check batteries, configure payloads*/
 void init(void);
+
 
 /*Compute the level of battery and return batterylevel*/
 batterylevel checkbatteries();
@@ -34,8 +29,13 @@ bool checktemperature(void);
 void deployment(void);
 
 
-/*Only if it is needed
- *After that go to 'INIT STATE'*/
+ /*（1)power on
+  *（2)delay 2.5s
+  *（3）reset command
+  *（4）set image resolution command -> 640x480 default
+  *（5）set image compressibility command
+  * Need 115200bps band rate at UART configuration
+  * After that go to 'INIT STATE'*/
 void payloadconfig(void);
 
 /*Check battery level, temperature(of each PCB),etc
