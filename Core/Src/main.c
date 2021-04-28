@@ -155,8 +155,6 @@ int main(void)
 	        break;
 	    }
 
-	    /*Start a -...*/
-
 		/*Start a TIMER*/
 
 	    return 0;

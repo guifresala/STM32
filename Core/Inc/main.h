@@ -32,6 +32,7 @@ extern "C" {
 #include "configuration.h"
 #include "payload.h"
 #include "comms.h"
+#include "definitions.h"
 
 
 /* Private includes ----------------------------------------------------------*/
