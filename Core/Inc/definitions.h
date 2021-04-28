@@ -8,6 +8,9 @@
 #ifndef INC_DEFINITIONS_H_
 #define INC_DEFINITIONS_H_
 
+
+#define TEMP_MIN = -40;
+#define TEMP_MAX = 125;
 /*Total of 8bytes -> 8bytes·1uit64_t/8bytes = 1 uit64_t*/
 typedef union __attribute__ ((__packed__)) Temperatures {
     uint64_t raw[1];
@@ -72,18 +75,18 @@ typedef union __attribute__ ((__packed__)) Image {
     struct __attribute__((__packed__)) {
     	uint8_t date;									/*When the image was acquired*/
     	uint8_t coordinates;							/*Where the image was acquired*/
-    	uint64_t bufferImage[2500];						/*An Image sizes 10kB-20kB -> 20000bytes·1uint64/8bytes = 2500 uint64_t*/
+    	uint8_t bufferImage[20000];						/*An Image sizes 10kB-20kB compressed -> 20000bytes worst case*/
     }fields;
 } Image;
 
-typedef union __attribute__ ((__packed__)) RF {
+typedef union __attribute__ ((__packed__)) RadioFrequency {
     uint64_t raw[];
     struct __attribute__((__packed__)) {
     	uint8_t date;									/*When the image was acquired*/
     	uint8_t coordinates;							/*Where the image was acquired*/
     	uint64_t bufferRF[];
     }fields;
-} Image;
+} RadioFrequency;
 
 
 #endif /* INC_DEFINITIONS_H_ */

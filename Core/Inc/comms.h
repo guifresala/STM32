@@ -8,7 +8,9 @@
 #ifndef INC_COMMS_H_
 #define INC_COMMS_H_
 
-/*Header with id (telecomand), or with the nº of piece of the photo, parity bit at the end (nº 1's odd or even)
+#include "main.h"
+
+/*Header with id (telecomand), or with the nº of segment of the photo, parity bit at the end (nº 1's odd or even)
  *
  * telecomands with (#define name nº)
  */

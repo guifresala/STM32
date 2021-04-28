@@ -115,18 +115,21 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	   configuration.system_state();
+	    system_state();
 	    switch (currentState)
 	    {
 
 	    case IDLE:
 	        /* if a telecomand to use the payload/comms is received, go to PAYLOADS/COMMS state */
-	        if(payload == true)	currentState = PAYLOAD;
-	        if(comms == true)	currentState = COMMS;
+	    	if(!system_state()) currentState = CONTINGENCY;
+	    	else if(payload)	currentState = PAYLOAD; /*payload becomes true if a telecommand to acquire data is received*/
+	        else if(comms)	currentState = COMMS;	/*comes becomes true when we have acquired the data and we need to send it*/
+	    	sensorReadings(); /*Updates the values of temperatures, voltages and currents*/
 	        break;
 
+	    /*Is needed to listen periodically with the receiver -> COMMS part*/
 	    case COMMS:
-	        /* check if the picture or spectogram has to be sent and send it if needed */
+	        /* check if the picture or spectrogram has to be sent and send it if needed */
 	    	if(comms == true) comms.telecommand(); 	        /* function that receives orders from "COMMS" */
 	    	else if(commstimer == true) comms.sendtelemetry(); /* loop that sends the telemetry data to "COMMS" */
 	    	comms = false;

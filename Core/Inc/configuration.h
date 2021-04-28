@@ -10,6 +10,8 @@
 
 #include "main.h"
 
+bool deployment_state = false; /*INICIALITZO AQUI??*/
+
 /*NOMINAL from 100 to 75, LOW from 75 to 15, CRITICAL from 15 to 10 (only to give us an idea*/
 enum BatteryLevel {NOMINAL=100, LOW=75, CRITICAL=15, SURVIVAL=10};
 BatteryLevel batterylevel;
@@ -23,9 +25,14 @@ batterylevel checkbatteries();
 /*Check if the memory have enough space to store a photo/spectrum*/
 void checkmemory();
 
+/*Check the temperature of the 8 sensors, returns true if the temperature is between a range
+ *The first time, calibrate the internal temperature sensor of STM32 -> 3.10.1 datasheet STM32L162VE*/
+bool checktemperature(void);
+
 /*Send a signal to a MOSFET(s) to burn a wire(s) and deploy Antenna
- * Check the switch to make sure the Antenna has been deployed properly*/
+ *Check the switch to make sure the Antenna has been deployed properly*/
 void deployment(void);
+
 
 /*Only if it is needed
  *After that go to 'INIT STATE'*/

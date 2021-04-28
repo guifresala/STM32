@@ -9,7 +9,6 @@
 
 void telecommand(void){
 
-}
 void sendtelemetry(){
 
 }

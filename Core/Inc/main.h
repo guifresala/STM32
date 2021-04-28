@@ -33,7 +33,7 @@ extern "C" {
 #include "payload.h"
 #include "comms.h"
 #include "definitions.h"
-
+#include "sensorReadings.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
