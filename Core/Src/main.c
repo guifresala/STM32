@@ -131,7 +131,8 @@ int main(void)
 	    /*Is needed to listen periodically with the receiver -> COMMS part*/
 	    case COMMS:
 	        /* check if the picture or spectrogram has to be sent and send it if needed */
-	    	if(comms == true) comms.telecommand(); 	        /* function that receives orders from "COMMS" */
+	    	if(!system_state()) currentState = CONTINGENCY;
+	    	else if(comms == true) comms.telecommand(); 	        /* function that receives orders from "COMMS" */
 	    	else if(commstimer == true) comms.sendtelemetry(); /* loop that sends the telemetry data to "COMMS" */
 	    	comms = false;
 	    	commstimer = false;
@@ -139,7 +140,9 @@ int main(void)
 	        break;
 
 	    case PAYLOAD:
+	    	if(!system_state()) currentState = CONTINGENCY;
 	    	payload.payloadinit();
+	    	payload.takePhoto();
 	    	payload = false;
 	    	currentState = IDLE;
 	        break;

@@ -7,12 +7,12 @@
 
 #include "payload.h"
 
-void receive(){
-
+void payloadinit(){
+	system_state();
 }
 
-void payloadinit(){
-
+void receive(){
+	takePhoto();
 }
 
 bool takePhoto(){
@@ -31,7 +31,6 @@ bool takePhoto(){
 	uint8_t stopCapture[5] = {0x56, 0x00, 0x36, 0x01, 0x03};
 	uint8_t supposedAckStopCapture[5] = {0x76, 0x00, 0x36, 0x00, 0x00};
 	uint8_t ackStopCapture[5];
-
 
 	HAL_UART_Transmit(&huart1, capture, 5, 1000); 		/*Transmit capture command*/
 	HAL_UART_Receive(&huart1, ackCapture, 5, 1000);		/*Receive ack capture*/
@@ -53,5 +52,4 @@ bool takePhoto(){
 			return true;
 		}
 	}
-
 }

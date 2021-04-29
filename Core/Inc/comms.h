@@ -10,11 +10,6 @@
 
 #include "main.h"
 
-/*Header with id (telecomand), or with the nº of segment of the photo, parity bit at the end (nº 1's odd or even)
- *
- * telecomands with (#define name nº)
- */
-
 /*Telecommand received from comms
 /*unpacking() -> redirect to the function we need to execute*/
 void telecommand(void);

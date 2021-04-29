@@ -22,6 +22,4 @@ void acquireCurrents();
 /*Includes the functions above*/
 void sensorReadings();
 
-
-
 #endif /* INC_SENSORREADINGS_H_ */

@@ -47,7 +47,7 @@ bool Cameraconfig(){
 void init(){
 	system_state();
 	deployment_state();
-	payloadconfig();
+	deployment();
 	currentState = IDLE;
 }
 

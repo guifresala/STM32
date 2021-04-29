@@ -11,23 +11,21 @@
 #include "main.h"
 
 /*Only at the beginning, includes the Antenna deployment, check batteries, configure payloads*/
+/*calibrate the internal temperature sensor of STM32 -> 3.10.1 datasheet STM32L162VE*/
 void init(void);
 
-
 /*Compute the level of battery and return batterylevel*/
-batterylevel checkbatteries();
+void checkbatteries();
 
 /*Check if the memory have enough space to store a photo/spectrum*/
 void checkmemory();
 
-/*Check the temperature of the 8 sensors, returns true if the temperature is between a range
- *The first time, calibrate the internal temperature sensor of STM32 -> 3.10.1 datasheet STM32L162VE*/
+/*Check the temperature of the 8 sensors, returns true if the temperature is between TEMP_MAX and TEMP_MIN*/
 bool checktemperature(void);
 
-/*Send a signal to a MOSFET(s) to burn a wire(s) and deploy Antenna
+/*Send a signal to a resistor to burn a wire and deploy Antenna
  *Check the switch to make sure the Antenna has been deployed properly*/
 void deployment(void);
-
 
  /*（1)power on
   *（2)delay 2.5s
@@ -38,8 +36,8 @@ void deployment(void);
   * After that go to 'INIT STATE'*/
 void payloadconfig(void);
 
-/*Check battery level, temperature(of each PCB),etc
- *If every parameter is between a specified values returns true*/
+/*Check battery level, temperatures,etc
+ *If each parameter is between a specified values returns true*/
 bool system_state();
 
 #endif /* INC_CONFIGURATION_H_ */

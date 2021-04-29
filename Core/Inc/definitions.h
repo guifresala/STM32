@@ -14,6 +14,18 @@
 
 constexpr int DELAY_CAMERA = 2500; /*Initial operation process*/
 
+/*Telecommands*/
+#define SENDDATA = 			01;	/*If the acquired photo or spectogram is needed to be send to GS*/
+#define TAKEPPHOTO =        02;	/*Might rotate the PQ into the right position +
+								wait until it is in the position where the picture is wanted to be taken.*/
+#define TAKERF = 			03;
+#define RESET = 			04;	/*The PQ might take a reset*/
+#define SPECIFICTELEMETRY = 05;
+#define STOPSENDINGDATA = 	06;
+#define ACKDATA = 			07;	/*It is received when all the data is received correctly*/
+#define NACKDATA = 			08;	/*If it is received if the GS do not receive all the segments of the data.
+ 	 	 	 	 	 	 	 	 *The PQ will send since the last segment received correctly.*/
+
 
 /*Total of 8bytes -> 8bytes·1uit64_t/8bytes = 1 uit64_t*/
 typedef union __attribute__ ((__packed__)) Temperatures {
@@ -63,13 +75,12 @@ typedef union __attribute__ ((__packed__)) Currents {
     }fields;
 } Currents;
 
-
 /*Total of 69bytes·2lines = 138bytes -> 144bytes -> 18 uit64_t*/
 typedef union __attribute__ ((__packed__)) TLEUpdate {
     uint64_t raw[18];
     struct __attribute__((__packed__)) {
-    	char tle1[69]; 									/*First line of TLE, 69 chars, 1byte each char*/
-    	char tle2[69]; 									/*Second line of TLE, 69 chars, 1byte each char*/
+    	char tle1[69]; 						/*First line of TLE, 69 chars, 1byte each char*/
+    	char tle2[69]; 						/*Second line of TLE, 69 chars, 1byte each char*/
     }fields;
 } TLEUpdate;
 
@@ -77,17 +88,17 @@ typedef union __attribute__ ((__packed__)) TLEUpdate {
 typedef union __attribute__ ((__packed__)) Image {
     uint64_t raw[2501];
     struct __attribute__((__packed__)) {
-    	uint8_t date;									/*When the image was acquired*/
-    	uint8_t coordinates;							/*Where the image was acquired*/
-    	uint8_t bufferImage[20000];						/*An Image sizes 10kB-20kB compressed -> 20000bytes worst case*/
+    	uint8_t date;						/*When the image was acquired*/
+    	uint8_t coordinates;				/*Where the image was acquired*/
+    	uint8_t bufferImage[20000];			/*20000bytes worst case*/
     }fields;
 } Image;
 
 typedef union __attribute__ ((__packed__)) RadioFrequency {
     uint64_t raw[];
     struct __attribute__((__packed__)) {
-    	uint8_t date;									/*When the image was acquired*/
-    	uint8_t coordinates;							/*Where the image was acquired*/
+    	uint8_t date;						/*When the image was acquired*/
+    	uint8_t coordinates;				/*Where the image was acquired*/
     	uint64_t bufferRF[];
     }fields;
 } RadioFrequency;
