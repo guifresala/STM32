@@ -10,8 +10,9 @@
 
 #include "main.h"
 
+
 /*Only at the beginning, includes the Antenna deployment, check batteries, configure payloads*/
-/*calibrate the internal temperature sensor of STM32 -> 3.10.1 datasheet STM32L162VE*/
+/*Will be executed every time we reboot the system*/
 void init(void);
 
 /*Compute the level of battery and return batterylevel*/

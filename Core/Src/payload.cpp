@@ -12,7 +12,8 @@ void payloadinit(){
 }
 
 void receive(){
-	takePhoto();
+	payloadinit();
+	takePhoto(); 	/*Store it in memory from definitions.Image.bufferImage*/
 }
 
 bool takePhoto(){
@@ -27,7 +28,7 @@ bool takePhoto(){
 	uint8_t dataLength[2]; /*FALTA PASSAR A DECIMAL*/
 	uint8_t readImageData[16] = {0x56, 0x00, 0x32, 0x0C, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x00,
 	                            0x00, 0x00, 0x00, 0x00, 0x00, 0x0A};
-	uint8_t imageData[14 + dataLength];
+	uint8_t imageData[14 + dataLength +14];
 	uint8_t stopCapture[5] = {0x56, 0x00, 0x36, 0x01, 0x03};
 	uint8_t supposedAckStopCapture[5] = {0x76, 0x00, 0x36, 0x00, 0x00};
 	uint8_t ackStopCapture[5];

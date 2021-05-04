@@ -31,6 +31,10 @@ extern "C" {
 #include "stm32f4xx_hal.h"
 #include "main.c"
 #include "payload.h"
+#include "comms.h"
+#include "configuration.h"
+#include "definitions.h"
+#include "sensorReadings.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */

@@ -25,6 +25,8 @@ constexpr int DELAY_CAMERA = 2500; /*Initial operation process*/
 #define ACKDATA = 			07;	/*It is received when all the data is received correctly*/
 #define NACKDATA = 			08;	/*If it is received if the GS do not receive all the segments of the data.
  	 	 	 	 	 	 	 	 *The PQ will send since the last segment received correctly.*/
+#define TLE = 				09; /*Packet from GS with the new TLE, update it inside memory
+ 	 	 	 	 	 	 	 	  the SPG4 uses it to propagate the orbit*/
 
 
 /*Total of 8bytes -> 8bytes·1uit64_t/8bytes = 1 uit64_t*/

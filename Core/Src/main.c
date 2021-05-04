@@ -124,11 +124,12 @@ int main(void)
 	        /* if a telecomand to use the payload/comms is received, go to PAYLOADS/COMMS state */
 	    	if(!system_state()) currentState = CONTINGENCY;
 	    	else if(payload)	currentState = PAYLOAD; /*payload becomes true if a telecommand to acquire data is received*/
-	        else if(comms)	currentState = COMMS;	/*comes becomes true when we have acquired the data and we need to send it*/
+	        else if(comms)	currentState = COMMS;	/*comms becomes true when we have acquired the data and we need to send it*/
 	    	sensorReadings(); /*Updates the values of temperatures, voltages and currents*/
+	    	/*ADCS tasks needed??*/
 	        break;
 
-	    /*Is needed to listen periodically with the receiver -> COMMS part*/
+	    /*Is needed to listen periodically with the receiver or timer from IDLE state? -> COMMS part*/
 	    case COMMS:
 	        /* check if the picture or spectrogram has to be sent and send it if needed */
 	    	if(!system_state()) currentState = CONTINGENCY;
@@ -150,15 +151,17 @@ int main(void)
 	    case CONTINGENCY:
 	        /*Turn STM32 to Stop Mode or Standby Mode
 	         *Loop to check at what batterylevel are we
-	         *Out of CONTINGENCY State when batterylevel is NOMINAL */
+	         *Out of CONTINGENCY State when batterylevel is NOMINAL
+	         *CHECK IF WE CAN EXECUTE SOME TASKS OR NOT IN STANDBY MODE*/
 	    	 while(configuration.checkbatteries()/=configuration.batterylevel.NOMINAL){
 
 	    	 }
 	    	 /*Return to Run Mode*/
 	         currentState = IDLE;
 	        break;
+	    /*If we reach this state something has gone wrong*/
 	    default:
-	    	currentState = IDLE;
+	    	/*REBOOT THE SYSTEM*/
 	        break;
 	    }
 

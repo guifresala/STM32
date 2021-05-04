@@ -11,8 +11,8 @@
 /*configuration.system_state() must be 'true'
  *batterylevel must be at Nominal level
  * configuration.checkmemory()
- * Start preparing the payload (to take a photo)/(detect RF)
- * Start a timer (enough to have the payload prepared) and start working*/
+ * Start preparing the payload to detect RF if needed (camera is already configured)
+ * takes the photo and store it in memory*/
 void payloadinit(void);
 
 /*（1）capture a image command
@@ -21,9 +21,7 @@ void payloadinit(void);
 *（4）stop capture command*/
 bool takePhoto(void);
 
-/*Includes payloadinit()
- * Receive the compressed photo or spectre and store it into the memory
- * Then return to 'IDLE' state */
+/*Includes payloadinit() and takePhoto(), then stores it in memory*/
 void receive(void);
 
 #endif /* INC_PAYLOAD_H_ */

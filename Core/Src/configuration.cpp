@@ -6,20 +6,15 @@
  */
 #include "configuration.h"
 
-
-
-
-
 void checkbatteries(){
 
 }
 
 void deployment(){
 	while(system_state() && !deployment_state){
-		/*Activate the resistor to burn the wire*/
+		/*Give high voltage to the resistor to burn the wire, TBD TIME AND VOLTAGE*/
 	}
-	deployment_state = true;
-	init();
+	deployment_state = true; /*Must be stored in FLASH memory in order to keep it if the system is rebooted*/
 }
 
 
@@ -28,7 +23,7 @@ bool Cameraconfig(){
 	uint8_t reset[4] = {0x56, 0x00, 0x26, 0x00};
 	uint8_t supposedAckReset[4] = {0x76, 0x00, 0x26, 0x00};
 	uint8_t ackReset[4];
-	uint8_t setCompressibility[9] = {0x56, 0x00, 0x31, 0x05, 0x01, 0x01, 0x12, 0x04, 0xFF}; //0xFF maximum compressed*/
+	uint8_t setCompressibility[9] = {0x56, 0x00, 0x31, 0x05, 0x01, 0x01, 0x12, 0x04, 0xFF}; //0xFF means maximum compressed*/
 	uint8_t supposedAckSetCompressibility[5] = {0x76, 0x00, 0x31, 0x00, 0x00};
 	uint8_t ackSetCompressibility[5];
 
@@ -46,8 +41,7 @@ bool Cameraconfig(){
 
 void init(){
 	system_state();
-	deployment_state();
-	deployment();
+	if(!deployment_state)	deployment();
 	currentState = IDLE;
 }
 
