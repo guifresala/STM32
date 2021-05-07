@@ -80,7 +80,7 @@ static void MX_USB_OTG_FS_HCD_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	currentState = IDLE;
 
   /* USER CODE END 1 */
 
@@ -90,7 +90,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  configuration.init();
+  init();
 
   /* USER CODE END Init */
 
@@ -133,17 +133,18 @@ int main(void)
 	    case COMMS:
 	        /* check if the picture or spectrogram has to be sent and send it if needed */
 	    	if(!system_state()) currentState = CONTINGENCY;
-	    	else if(comms == true) comms.telecommand(); 	        /* function that receives orders from "COMMS" */
-	    	else if(commstimer == true) comms.sendtelemetry(); /* loop that sends the telemetry data to "COMMS" */
+	    	else if(comms) telecommand(); 	        /* function that receives orders from "COMMS" */
+	    	else if(commstimer) sendtelemetry(); /* loop that sends the telemetry data to "COMMS" */
 	    	comms = false;
 	    	commstimer = false;
 	    	currentState = IDLE;
 	        break;
+	        HAL_FLASH_Program(TypeProgram, Address, Data)
 
 	    case PAYLOAD:
 	    	if(!system_state()) currentState = CONTINGENCY;
-	    	payload.payloadinit();
-	    	payload.takePhoto();
+	    	payloadinit();
+	    	takePhoto();
 	    	payload = false;
 	    	currentState = IDLE;
 	        break;
@@ -153,7 +154,7 @@ int main(void)
 	         *Loop to check at what batterylevel are we
 	         *Out of CONTINGENCY State when batterylevel is NOMINAL
 	         *CHECK IF WE CAN EXECUTE SOME TASKS OR NOT IN STANDBY MODE*/
-	    	 while(configuration.checkbatteries()/=configuration.batterylevel.NOMINAL){
+	    	 while(checkbatteries()/=NOMINAL){
 
 	    	 }
 	    	 /*Return to Run Mode*/

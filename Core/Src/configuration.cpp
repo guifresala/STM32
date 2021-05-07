@@ -5,6 +5,8 @@
  *      Author: guifre
  */
 #include "configuration.h"
+#include "main.h"
+#include "main.c"
 
 void checkbatteries(){
 

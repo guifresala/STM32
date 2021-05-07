@@ -12,7 +12,7 @@
 #define TEMP_MIN = -40;
 #define TEMP_MAX = 105;
 
-constexpr int DELAY_CAMERA = 2500; /*Initial operation process*/
+#define DELAY_CAMERA = 2500; /*Initial operation process*/
 
 /*Telecommands*/
 #define SENDDATA = 			01;	/*If the acquired photo or spectogram is needed to be send to GS*/
@@ -63,7 +63,20 @@ typedef union __attribute__ ((__packed__)) Voltages {
     }fields;
 } Voltages;
 
-/*Total of 7bytes -> 8bytes -> 1 uit64_t*/
+/*Total of 5bytes -> 8 bytes -> 1 uint64_t*/
+typedef union __attribute__ ((__packed__)) BatteryLevels {
+    uint64_t raw[1];
+    struct __attribute__((__packed__)) {
+    	uint8_t battery1;
+    	uint8_t battery2;
+    	uint8_t battery3;
+    	uint8_t battery4;
+    	uint8_t totalbattery; /*Stores the total percentage of battery
+								totalbattery = (battery1+...+battery4)/4 */
+    }fields;
+} BatteryLevels;
+
+/*Total of 7bytes -> 8bytes -> 1 uint64_t*/
 typedef union __attribute__ ((__packed__)) Currents {
     uint64_t raw[1];
     struct __attribute__((__packed__)) {
@@ -87,21 +100,22 @@ typedef union __attribute__ ((__packed__)) TLEUpdate {
 } TLEUpdate;
 
 /*Total of 20002bytes (20000+1+1) -> 20002/8 = 2500.25 rounded to 2501 uint64_t*/
-typedef union __attribute__ ((__packed__)) Image {
-    uint64_t raw[2501];
+typedef union __attribute__ ((__packed__)) Image {	/*const variable is stored in FLASH memory*/
+    const uint64_t raw[2501];
     struct __attribute__((__packed__)) {
-    	uint8_t date;						/*When the image was acquired*/
-    	uint8_t coordinates;				/*Where the image was acquired*/
-    	uint8_t bufferImage[20000];			/*20000bytes worst case*/
+    	const uint8_t date;						/*When the image was acquired*/
+    	const uint8_t coordinates;				/*Where the image was acquired*/
+    	const uint8_t bufferImage[20000];			/*20000bytes worst case*/
     }fields;
 } Image;
 
 typedef union __attribute__ ((__packed__)) RadioFrequency {
-    uint64_t raw[];
+    const uint64_t raw[55000];
     struct __attribute__((__packed__)) {
-    	uint8_t date;						/*When the image was acquired*/
-    	uint8_t coordinates;				/*Where the image was acquired*/
-    	uint64_t bufferRF[];
+    	const uint8_t date;						/*When the image was acquired*/
+    	const uint8_t coordinates;				/*Where the image was acquired*/
+    	const uint64_t bufferRF[55000];				/*The size depends on the time acquiring, at the most about 55kB (whole orbit)
+    	 	 	 	 	 	 	 	 	 	  size(bytes) = 73bits/s·(time acquiring)·1byte/8bits */
     }fields;
 } RadioFrequency;
 

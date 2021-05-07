@@ -8,6 +8,8 @@
 #ifndef INC_PAYLOAD_H_
 #define INC_PAYLOAD_H_
 
+#include "main.h"
+
 /*configuration.system_state() must be 'true'
  *batterylevel must be at Nominal level
  * configuration.checkmemory()

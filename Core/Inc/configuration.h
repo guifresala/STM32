@@ -15,7 +15,7 @@
 /*Will be executed every time we reboot the system*/
 void init(void);
 
-/*Compute the level of battery and return batterylevel*/
+/*Compute the level of battery and updates batterylevel*/
 void checkbatteries();
 
 /*Check if the memory have enough space to store a photo/spectrum*/

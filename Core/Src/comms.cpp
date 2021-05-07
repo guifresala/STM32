@@ -9,9 +9,11 @@
 
 void telecommand(void){
 
+};
+
 void sendtelemetry(){
 
-}
+};
 
 void transmitpck(){
 
