@@ -39,14 +39,15 @@ bool takePhoto(){
 	HAL_UART_Receive(&huart1, ackCapture, 5, 1000);		/*Receive ack capture*/
 	if(ackCapture == supposedAckCapture){
 		HAL_UART_Transmit(&huart1, readImageDataLength, 5, 1000); 		/*Transmit readImageDataLength command*/
-		dataLength = ackReadImageDataLength[7]<<8;		/*Copy the high length bit*/ /*SHIFT 8 POSICIONS*/
-		dataLength = ackReadImageDataLength[8] | dataLength;		/*Copy the low length bit*/
-		readImageData(12) = dataLength[0];
-		readImageData(13) = dataLength[1];
+		HAL_UART_Receive(&huart1, ackReadImageDataLength, 8, 1000);
+		readImageData[12] = ackReadImageDataLength[7];		/*Copy the high length bit*/ /*SHIFT 8 POSICIONS*/
+		readImageData[13] = ackReadImageDataLength[8];		/*Copy the low length bit*/
+		dataLength = readImageData[12]<<8;
+		dataLength = readImageData[13] | dataLength;
 		HAL_UART_Transmit(&huart1, readImageData, 16, 1000); 	/*Transmit read image command*/
 		/*Supposed to receive = 76 00 32 00 00 FF D8 。。。。。。FF D9 76 00 32 00 00    where "...." is the data*/
 		HAL_UART_Receive(&huart1, imageData, dataLength, 1000); /*S'HA DE CANVIAR A DECIMAL DATALENGTH*/
-		for(i=7; i<(7+dataLength); i++){
+		for(uint8_t i=7; i<(7+dataLength); i++){
 			image.fields.bufferImage[i-7] = imageData[i];		/*Store the data in the array of Union Image*/
 		}
 		HAL_UART_Transmit(&huart1, stopCapture, 5, 1000);
