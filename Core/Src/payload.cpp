@@ -28,7 +28,7 @@ bool takePhoto(){
 	 * XX -> high byte, YY -> low byte*/
 	uint8_t ackReadImageDataLength[8];
 	uint16_t dataLength; /*FALTA PASSAR A DECIMAL*/
-	uint8_t readImageData[16] = {0x56, 0x00, 0x32, 0x0C, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x00,
+	uint8_t readImageData[16] = {0x56, 0x00, 0x32, 0x0C, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00,
 	                            0x00, 0x00, 0x00, 0x00, 0x00, 0x0A};
 	uint8_t imageData[14 + dataLength +14];
 	uint8_t stopCapture[5] = {0x56, 0x00, 0x36, 0x01, 0x03};
@@ -46,9 +46,9 @@ bool takePhoto(){
 		dataLength = readImageData[13] | dataLength;
 		HAL_UART_Transmit(&huart1, readImageData, 16, 1000); 	/*Transmit read image command*/
 		/*Supposed to receive = 76 00 32 00 00 FF D8 。。。。。。FF D9 76 00 32 00 00    where "...." is the data*/
-		HAL_UART_Receive(&huart1, imageData, dataLength, 1000); /*S'HA DE CANVIAR A DECIMAL DATALENGTH*/
-		for(uint8_t i=7; i<(7+dataLength); i++){
-			image.fields.bufferImage[i-7] = imageData[i];		/*Store the data in the array of Union Image*/
+		HAL_UART_Receive(&huart1, imageData, dataLength, 1000);
+		for(uint8_t i=5; i<(5+dataLength); i++){				/*MIRAR DE FER MEMCOPY PER COPIAR TOT EL BUFFER*/
+			image.fields.bufferImage[i-5] = imageData[i];		/*Store the data in the array of Union Image*/
 		}
 		HAL_UART_Transmit(&huart1, stopCapture, 5, 1000);
 		HAL_UART_Receive(&huart1, ackStopCapture, 5, 1000);
@@ -58,6 +58,7 @@ bool takePhoto(){
 	/*Erase last image and stored in memory and store the new image.fields.bufferImage in the FLASH Memory*/
 	HAL_FLASHEx_Erase(pEraseInit, SectorError); /*ACABAR DE MIRAR COM FUNCIONA*/
 	HAL_FLASH_Program_IT(TypeProgram, Address, Data);
+
 	}
 }
 

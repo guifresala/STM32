@@ -63,10 +63,6 @@ typedef union __attribute__ ((__packed__)) Voltages {
     }fields;
 } Voltages;
 
-/* example*/
-
-//Hello world
-
 
 /*Total of 5bytes -> 8 bytes -> 1 uint64_t*/
 typedef union __attribute__ ((__packed__)) BatteryLevels {
@@ -106,6 +102,7 @@ typedef union __attribute__ ((__packed__)) Image {	/*const variable is stored in
     	const uint8_t date;						/*When the image was acquired*/
     	const uint8_t coordinates;				/*Where the image was acquired*/
     	const uint8_t bufferImage[20000];			/*20000bytes worst case*/
+    	const uint8_t size;
     }fields;
 } Image;
 
