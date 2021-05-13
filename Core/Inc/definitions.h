@@ -67,12 +67,7 @@ typedef union __attribute__ ((__packed__)) Voltages {
 typedef union __attribute__ ((__packed__)) BatteryLevels {
     uint64_t raw[1];
     struct __attribute__((__packed__)) {
-    	uint8_t battery1;
-    	uint8_t battery2;
-    	uint8_t battery3;
-    	uint8_t battery4;
-    	uint8_t totalbattery; /*Stores the total percentage of battery
-								totalbattery = (battery1+...+battery4)/4 */
+    	uint8_t totalbattery; /*Stores the total percentage of battery*/
     }fields;
 } BatteryLevels;
 

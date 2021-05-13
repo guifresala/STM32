@@ -7,9 +7,12 @@
 #include "configuration.h"
 #include "main.h"
 #include "main.c"
+#include "definitions.h"
 
 void checkbatteries(){
-
+	BatteryLevels batteryLevels;
+	batteryLevels.fields.totalbattery;
+	batteryLevels.raw;
 }
 
 void deployment(){
