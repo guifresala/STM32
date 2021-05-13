@@ -63,6 +63,9 @@ typedef union __attribute__ ((__packed__)) Voltages {
     }fields;
 } Voltages;
 
+/* example*/
+
+
 /*Total of 5bytes -> 8 bytes -> 1 uint64_t*/
 typedef union __attribute__ ((__packed__)) BatteryLevels {
     uint64_t raw[1];
