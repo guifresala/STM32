@@ -155,7 +155,6 @@ int main(void)
 	         *Out of CONTINGENCY State when batterylevel is NOMINAL
 	         *CHECK IF WE CAN EXECUTE SOME TASKS OR NOT IN STANDBY MODE*/
 	    	 while(checkbatteries()/=NOMINAL){
-
 	    	 }
 	    	 /*Return to Run Mode*/
 	         currentState = IDLE;
