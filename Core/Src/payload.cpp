@@ -60,3 +60,5 @@ bool takePhoto(){
 	HAL_FLASH_Program_IT(TypeProgram, Address, Data);
 	}
 }
+
+/****/
