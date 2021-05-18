@@ -10,6 +10,7 @@
 void telecommand(void){
 // Hello world
 /*ESPECTACULAR*/
+	//reventat
 };
 
 void sendtelemetry(){
