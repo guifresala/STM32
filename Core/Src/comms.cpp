@@ -8,7 +8,7 @@
 #include "comms.h"
 
 void telecommand(void){
-
+// Hello world
 };
 
 void sendtelemetry(){
