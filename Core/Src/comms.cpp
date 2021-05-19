@@ -10,9 +10,6 @@
 void telecommand(void){
 //Hem de definir que volem fer aquí. //Enviar telecomands a la OBC??
 };
-//TEEEEST
-//Test 222222222222222222222222222222222222
-//Algo12
 void sendtelemetry(){
 //Enviar un paquet de telemetria
 	/* Hem de pensar amb una estructura:
