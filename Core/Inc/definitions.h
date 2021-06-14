@@ -108,7 +108,7 @@ typedef union __attribute__ ((__packed__)) Image {	/*const variable is stored in
 
 /*Total of 55002bytes -> 55002/8 = 6875.25 rounded to 6876 uint64_t*/
 typedef union __attribute__ ((__packed__)) RadioFrequency {
-    const uint64_t raw[55000];
+    const uint64_t raw[6876];
     struct __attribute__((__packed__)) {
     	const uint8_t date;						/*When the image was acquired*/
     	const uint8_t coordinates;				/*Where the image was acquired*/

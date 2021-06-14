@@ -127,10 +127,11 @@ int main(void)
 	        else if(comms)	currentState = COMMS;	/*comms becomes true when we have acquired the data and we need to send it*/
 	    	sensorReadings(); /*Updates the values of temperatures, voltages and currents*/
 	    	/*ADCS tasks needed??*/
+	    	//Add Rx mode here
 	        break;
 
 	    /*Is needed to listen periodically with the receiver or timer from IDLE state? -> COMMS part*/
-	    case COMMS:
+	    case COMMS:	// This might refer ONLY refear to TX!!!
 	        /* check if the picture or spectrogram has to be sent and send it if needed */
 	    	if(!system_state()) currentState = CONTINGENCY;
 	    	else if(comms) telecommand(); 	        /* function that receives orders from "COMMS" */
