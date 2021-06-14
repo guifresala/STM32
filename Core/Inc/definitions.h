@@ -106,12 +106,13 @@ typedef union __attribute__ ((__packed__)) Image {	/*const variable is stored in
     }fields;
 } Image;
 
+/*Total of 55002bytes -> 55002/8 = 6875.25 rounded to 6876 uint64_t*/
 typedef union __attribute__ ((__packed__)) RadioFrequency {
     const uint64_t raw[55000];
     struct __attribute__((__packed__)) {
     	const uint8_t date;						/*When the image was acquired*/
     	const uint8_t coordinates;				/*Where the image was acquired*/
-    	const uint64_t bufferRF[55000];				/*The size depends on the time acquiring, at the most about 55kB (whole orbit)
+    	const uint8_t bufferRF[55000];				/*The size depends on the time acquiring, at the most about 55kB (whole orbit)
     	 	 	 	 	 	 	 	 	 	  size(bytes) = 73bits/s·(time acquiring)·1byte/8bits */
     }fields;
 } RadioFrequency;

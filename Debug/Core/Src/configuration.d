@@ -36,7 +36,7 @@ Core/Src/configuration.o: ../Core/Src/configuration.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  ../Core/Inc/payload.h ../Core/Inc/comms.h ../Core/Inc/configuration.h \
  ../Core/Inc/definitions.h ../Core/Inc/sensorReadings.h \
- ../Core/Inc/main.h ../Core/Src/main.c
+ ../Core/Inc/main.h ../Core/Src/main.c ../Core/Inc/definitions.h
 
 ../Core/Inc/configuration.h:
 
@@ -123,3 +123,5 @@ Core/Src/configuration.o: ../Core/Src/configuration.cpp \
 ../Core/Inc/main.h:
 
 ../Core/Src/main.c:
+
+../Core/Inc/definitions.h:

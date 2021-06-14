@@ -59,6 +59,7 @@ bool takePhoto(){
 	HAL_FLASHEx_Erase(pEraseInit, SectorError); /*ACABAR DE MIRAR COM FUNCIONA*/
 	HAL_FLASH_Program_IT(TypeProgram, Address, Data);
 
+
 	}
 }
 

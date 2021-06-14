@@ -60,7 +60,7 @@ bool checktemperature(){
 	bool temp = true;
 	for(i=1; i<8; i++){
 		while(temp){
-			if((temperatures.raw(i)>=TEMP_MIN) && (temperatures.raw(i)<=TEMP_MAX)){ /*COM AGAFO LES TEMPERATURES DEL RAW??*/
+			if((temperatures.raw(i)>=TEMP_MIN) && (temperatures.raw(i)<=TEMP_MAX)){ /*CHECK THE CORRECT ACQUIREMENT OF TEMPERATURES*/
 				temp = true;
 			}
 			else{ temp = false;
